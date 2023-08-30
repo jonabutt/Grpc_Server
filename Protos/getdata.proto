@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option csharp_namespace = "ToDoGrpc";
+
+import "google/protobuf/timestamp.proto";
+
+service GetData {
+    rpc Get (GetRequest) returns (GetResponse);
+    rpc GetComplex (GetRequest) returns (GetComplexRootResponse);
+}
+
+message GetRequest {
+}
+
+message GetResponse {
+    string message = 1;
+}
+
+message GetComplexRootResponse {
+    repeated GetComplex get_complex = 1;
+}
+
+message Permissions{
+    bool admin = 1;
+    bool maintain = 2;
+    bool push = 3;
+    bool triage = 4;
+    bool pull = 5;
+}
+
+message Owner{
+    string login = 1;
+    int32 id = 2;
+    string node_id = 3;
+    string avatar_url = 4;
+    string gravatar_id = 5;
+    string url = 6;
+    string html_url = 7;
+    string followers_url = 8;
+    string following_url = 9;
+    string gists_url = 10;
+    string starred_url = 11;
+    string subscriptions_url = 12;
+    string organizations_url = 13;
+    string repo_url = 14;
+    string events_url = 15;
+    string type = 16;
+    bool site_admin = 17;
+}
+
+message GetComplex{
+    int32 id = 1;
+    string node_id = 2;
+    string name = 3;
+    string full_name = 4;
+    bool private = 5;
+    Owner owner = 6;
+    string html_url = 7;
+    string description = 8;
+    bool fork = 9;
+    string url = 10;
+    string forks_url = 11;
+    string keys_url = 12;
+    string collaborators_url = 13;
+    string teams_url = 14;
+    string hooks_url = 15;
+    google.protobuf.Timestamp created_at = 16;
+    google.protobuf.Timestamp updated_at = 17;
+    google.protobuf.Timestamp pushed_at = 18;
+    repeated string topics = 19;
+    Permissions permissions = 20;
+}
